@@ -22,7 +22,7 @@ public class Conexion {
     public boolean conectar() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/java_empresa",
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BonillaCastillo?zeroDateTimeBehavior=convertToNull [root on Default schema]",
                     "root", "");
             return true;
         } catch (SQLException | ClassNotFoundException e) {
