@@ -1,5 +1,13 @@
 package com.dao;
 
+import com.conexion.Conexion;
+import com.model.Proyecto;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  * Nombre de la clase: DaoProyecto
  * Fecha: 30-10-2020
@@ -7,6 +15,35 @@ package com.dao;
  * Copyright: luis345, ismael-08.jpg
  * @author luisbonilla, ismael casttilo
  */
-public class DaoProyecto {
-    
+public class DaoProyecto extends Conexion {
+    public List<Proyecto>mostrarProyectos()
+    {
+        List listaPro=new ArrayList();
+        ResultSet res;
+        try
+        {
+            this.conectar();
+            String sql="select * from proyecto";
+            PreparedStatement pre=this.getCon().prepareStatement(sql);
+            res=pre.executeQuery();
+            while(res.next())
+            {
+                Proyecto depa=new Proyecto();
+//                depa.setCodigoDepartamento(res.getInt("codigoDepartamento"));
+//                depa.setNombre(res.getString("nombre"));
+//                depa.setCantidadEmpleado(res.getInt("cantidadEmpleado"));
+                listaPro.add(depa);
+            }
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(null,"Error al mostrar"+
+                    e.getMessage());
+        }
+        finally
+        {
+            this.desconectar();
+        }
+        return listaPro;
+    }
 }
