@@ -28,16 +28,16 @@ public class DaoProyecto extends Conexion {
             res=pre.executeQuery();
             while(res.next())
             {
-                Proyecto depa=new Proyecto();
-//                depa.setCodigoDepartamento(res.getInt("codigoDepartamento"));
-//                depa.setNombre(res.getString("nombre"));
-//                depa.setCantidadEmpleado(res.getInt("cantidadEmpleado"));
-                listaPro.add(depa);
+                Proyecto pro=new Proyecto();
+                pro.setCodigoProyecto(res.getInt("codigoProyecto"));
+                pro.setNombre(res.getString("nombre"));
+                pro.setUbicacion("ubicacion");
+                listaPro.add(pro);
             }
         }
         catch (Exception e)
         {
-            JOptionPane.showMessageDialog(null,"Error al mostrar"+
+            JOptionPane.showMessageDialog(null,"Error al mostrar "+
                     e.getMessage());
         }
         finally
